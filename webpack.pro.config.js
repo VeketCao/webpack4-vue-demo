@@ -11,7 +11,8 @@ const nodeModulesPath = path.resolve(__dirname,'node_modules');
 const srcDir = path.resolve(process.cwd(),'src');
 const glob = require('glob');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 /**考虑多页面应用，多个入口文件**/
 const _entries = {};
@@ -70,6 +71,7 @@ const config={
             __DEV__: env === 'development',
             __PROD__: env === 'production'
         }),
+        new VueLoaderPlugin(),
         new ExtractTextPlugin({
             filename: 'css/[hash].[name].min.css',
             allChunks: false

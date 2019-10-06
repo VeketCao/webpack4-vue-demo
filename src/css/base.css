@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+html, body, div, span, applet, figure, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, big, cite, code, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400
+}
+
+body {
+    font-size: 12px;
+    color: #666;
+}
+
+body, body * {
+    font-family: "Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    outline: none;
+}
+
+/***自定义样式***/
+/*html,body *::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}*/
+
+.pull-right {
+    float: right;
+}

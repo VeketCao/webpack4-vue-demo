@@ -65,8 +65,7 @@ const config={
                 },
                 common: {
                     name: "common",
-                    minChunks: 2,
-                    minSize:30000
+                    minChunks: 2
                 },
             },
             chunks:'all',

@@ -6,12 +6,12 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//生成一个HTML文件
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const buildPath = path.resolve(__dirname,'dist');
 const nodeModulesPath = path.resolve(__dirname,'node_modules');
 const srcDir = path.resolve(process.cwd(),'src');
 const glob = require('glob');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 /**考虑多页面应用，多个入口文件**/
 const _entries = {};
@@ -37,7 +37,7 @@ const htmlPlugins = () => {
         };
         if(filename in _entries){
             cfg.inject = 'body';
-            cfg.chunks = ['vendor',filename];
+            cfg.chunks = ['vendor','common',filename];
         }
         rtn.push(new HtmlWebpackPlugin(cfg));
     });
@@ -54,6 +54,25 @@ const config={
         host:'localhost',
         stats:{cached:false,colors:true}
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor:{
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    priority:10,
+                    enforce:true
+                },
+                common: {
+                    name: "common",
+                    minChunks: 2,
+                    minSize:30000
+                },
+            },
+            chunks:'all',
+            minSize:40000
+        },
+    },
     resolve:{
         extensions:['.js', '.vue','.css', '.png', '.jpg'],
         alias:{
@@ -68,8 +87,7 @@ const config={
     output:{
         path:buildPath,
         publicPath:'',
-        filename:'[name].js',
-        chunkFilename:'[id].js'
+        filename:'[name].js'
     },
     plugins:[
         new webpack.HotModuleReplacementPlugin(),

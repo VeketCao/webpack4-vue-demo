@@ -4,7 +4,7 @@
 import VueRouter from 'vue-router';
 
 import Home from '../Home/Home'
-import Login from '../Login/Login'
+/*import Login from '../Login/Login'*/
 
 Vue.use(VueRouter);
 
@@ -15,7 +15,7 @@ const routesMap = [
     {
         path:'/login',
         name:'login',
-        component:Login,
+        component: (resolve)=>{require(['../Login/Login.vue'],resolve)},
     },
     {
         path:'/home',

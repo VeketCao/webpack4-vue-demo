@@ -6,13 +6,13 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//生成一个HTML文件
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const buildPath = path.resolve(__dirname,'dist');
 const nodeModulesPath = path.resolve(__dirname,'node_modules');
 const srcDir = path.resolve(process.cwd(),'src');
 const glob = require('glob');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 /**考虑多页面应用，多个入口文件**/
 const _entries = {};
@@ -80,8 +80,7 @@ const config={
     output:{
         path:buildPath,
         publicPath:'',
-        filename:'js/[hash:8].[name].min.js',
-        chunkFilename:'js/[hash:8].[id].min.js'
+        filename:'js/[hash:8].[name].min.js'
     },
     /*devtool: '#source-map',*/
     plugins:[

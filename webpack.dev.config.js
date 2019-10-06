@@ -37,7 +37,7 @@ const htmlPlugins = () => {
         };
         if(filename in _entries){
             cfg.inject = 'body';
-            cfg.chunks = ['core',filename];
+            cfg.chunks = ['vendor',filename];
         }
         rtn.push(new HtmlWebpackPlugin(cfg));
     });
@@ -45,6 +45,15 @@ const htmlPlugins = () => {
 };
 
 const config={
+    mode:'development',
+    devServer:{
+        hot:true,
+        inline:true,
+        publicPath:'',
+        port:3000,
+        host:'localhost',
+        stats:{cached:false,colors:true}
+    },
     resolve:{
         extensions:['.js', '.vue','.css', '.png', '.jpg'],
         alias:{
@@ -55,22 +64,13 @@ const config={
             "@":`${srcDir}/core`
         }
     },
-    entry:Object.assign(_entries, { core: ['vue','vue-router'] }),
+    entry:Object.assign(_entries, { vendor: ['vue','vue-router'] }),
     output:{
         path:buildPath,
         publicPath:'',
         filename:'[name].js',
         chunkFilename:'[id].js'
     },
-    devServer:{
-        hot:true,
-        inline:true,
-        publicPath:'',
-        port:3000,
-        host:'localhost',
-        stats:{cached:false,colors:true}
-    },
-    devtool: '#eval-source-map',
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({

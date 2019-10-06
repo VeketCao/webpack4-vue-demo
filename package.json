@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js --progress --colors --inline",
-    "prod": "cross-env NODE_ENV=production webpack --config webpack.pro.config.js --progress --colors --mode production",
+    "prod": "cross-env NODE_ENV=production webpack --config webpack.pro.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

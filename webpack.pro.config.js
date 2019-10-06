@@ -38,7 +38,7 @@ const htmlPlugins = () => {
         };
         if(filename in _entries){
             cfg.inject = 'body';
-            cfg.chunks = ['core',filename];
+            cfg.chunks = ['vendor','common',filename];
         }
         rtn.push(new HtmlWebpackPlugin(cfg));
     });
@@ -46,6 +46,26 @@ const htmlPlugins = () => {
 };
 
 const config={
+    mode:'production',
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor:{
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    priority:10,
+                    enforce:true
+                },
+                common: {
+                    name: "common",
+                    minChunks: 2,
+                    minSize:30000
+                },
+            },
+            chunks:'all',
+            minSize:40000
+        },
+    },
     resolve:{
         extensions:['.js', '.vue','.css', '.png', '.jpg'],
         alias:{
@@ -56,7 +76,7 @@ const config={
             "@":`${srcDir}/core`
         }
     },
-    entry:Object.assign(_entries, { core: ['vue','vue-router'] }),
+    entry:Object.assign(_entries, { vendor: ['vue','vue-router'] }),
     output:{
         path:buildPath,
         publicPath:'',

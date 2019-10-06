@@ -1,10 +1,9 @@
 import '../../css/base'
-console.log('hello world')
-/*import App from '../module/App/main'
-import router from '../module/Route/main'
+import App from '../module/App/App'
+import router from '../module/Route/Route'
 
 new Vue({
     el:'#app',
     router,
     render: h => h(App)
-})*/
+})

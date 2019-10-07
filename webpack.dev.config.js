@@ -96,7 +96,7 @@ const config={
         }),
         new VueLoaderPlugin(),
         new ExtractTextPlugin({
-            filename: 'css/[name].css',
+            filename: '[name].css',
             allChunks: true
         }),
         new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),

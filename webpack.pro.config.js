@@ -58,7 +58,8 @@ const config={
                 },
                 common: {
                     name: "common",
-                    minChunks: 2
+                    minChunks: 2,
+                    minSize:30000
                 },
             },
             chunks:'all',
@@ -91,7 +92,7 @@ const config={
         }),
         new VueLoaderPlugin(),
         new ExtractTextPlugin({
-            filename: 'css/[hash].[name].min.css',
+            filename: 'css/[hash:8].[name].min.css',
             allChunks: false
         }),
         new OptimizeCSSPlugin({

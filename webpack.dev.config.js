@@ -150,7 +150,7 @@ const config={
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg)(\?.*)?$/,
-                exclude: [path.resolve(__dirname,'src/js/icons')],
+                exclude: [path.resolve(__dirname,'src/core/icons')],
                 use:[{
                     loader:'url-loader',
                     options:{
